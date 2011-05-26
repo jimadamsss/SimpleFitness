@@ -18,6 +18,11 @@
     IBOutlet UILabel *allowRepsLabel;
     IBOutlet UILabel *allowSetsLabel;
     IBOutlet UITextView *helpLabel;
+    
+    IBOutlet UIToolbar *accessoryToolbar;
+
+    UIView *activeField;
+
 }
 @property (nonatomic, retain) UITextField *equipName;
 @property (nonatomic, retain) UISegmentedControl *allowSets;
@@ -26,9 +31,11 @@
 @property (nonatomic, retain) UILabel *allowRepsLabel;
 @property (nonatomic, retain) UILabel *allowSetsLabel;
 @property (nonatomic, retain) UITextView *helpLabel;
+@property (nonatomic, retain) IBOutlet UIToolbar *accessoryToolbar;
 
 -(IBAction)save:(id)sender;
 -(IBAction)toggleType:(id)sender;
+-(IBAction)doneEditing:(id)sender;
 
 
 @end

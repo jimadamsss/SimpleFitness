@@ -107,7 +107,7 @@ static NSString * const CPCloseValuesBindingContext = @"CPCloseValuesBindingCont
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
         plotStyle = CPTradingRangePlotStyleOHLC;
 		lineStyle = [[CPLineStyle alloc] init];
         increaseFill = [(CPFill *)[CPFill alloc] initWithColor:[CPColor whiteColor]];

@@ -42,7 +42,7 @@
  **/
 -(id)initWithFrame:(CGRect)newFrame xScaleType:(CPScaleType)newXScaleType yScaleType:(CPScaleType)newYScaleType;
 {
-    if ( self = [super initWithFrame:newFrame] ) {
+    if ( self == [super initWithFrame:newFrame] ) {
 		xScaleType = newXScaleType;
 		yScaleType = newYScaleType;
     }
@@ -56,7 +56,7 @@
 
 -(id)initWithLayer:(id)layer
 {
-	if ( self = [super initWithLayer:layer] ) {
+	if ( self == [super initWithLayer:layer] ) {
 		CPXYGraph *theLayer = (CPXYGraph *)layer;
 		
 		xScaleType = theLayer->xScaleType;

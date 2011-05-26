@@ -32,7 +32,7 @@
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-    if ( self = [super initWithFrame:newFrame] ) {
+    if ( self == [super initWithFrame:newFrame] ) {
         mutableAnnotations = [[NSMutableArray alloc] init];
     }
     return self;

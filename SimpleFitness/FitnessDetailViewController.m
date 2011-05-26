@@ -31,8 +31,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 //        self.navigation
     }
@@ -143,6 +142,8 @@
     [items replaceObjectAtIndex:2 withObject:dateItem];
     [toolbar setItems:items animated:YES];
     
+    self.navigationItem.title = journalEntry.name;
+
     [dateFormatter release];
     
 }
@@ -297,7 +298,9 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [activeField resignFirstResponder];
     activeField = textField;
+    textField.inputAccessoryView = accessoryToolbar;
     return YES;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -306,6 +309,7 @@
 }
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textField
 {
+    [activeField resignFirstResponder];
     activeField = textField;
     textField.inputAccessoryView = accessoryToolbar;
     return YES;

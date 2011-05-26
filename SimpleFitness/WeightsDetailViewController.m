@@ -22,6 +22,9 @@
 @synthesize scrollView;
 @synthesize accessoryToolbar;
 @synthesize toolbar;
+@synthesize setsLabel;
+@synthesize repsLabel;
+@synthesize weightType;
 
 @synthesize journalEntry;
 @synthesize newRepsValue;
@@ -52,6 +55,7 @@
     [nextButton release];
     [saveButton release];
     [scrollView release];
+    [weightType release];
     [super dealloc];
 }
 
@@ -129,6 +133,13 @@
     [weightField resignFirstResponder];
     [commentsField resignFirstResponder];
     
+    repsField.hidden = ![journalEntry.allowReps boolValue];
+    repsLabel.hidden = ![journalEntry.allowReps boolValue];
+    setsField.hidden = ![journalEntry.allowSets boolValue];
+    setsLabel.hidden = ![journalEntry.allowSets boolValue];
+    
+    weightType.selectedSegmentIndex = 0;
+    
     UIBarButtonItem *dateItem = nil;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -139,6 +150,9 @@
     NSMutableArray *items = [toolbar.items mutableCopy];
     [items replaceObjectAtIndex:2 withObject:dateItem];
     [toolbar setItems:items animated:YES];
+    
+    
+    self.navigationItem.title = journalEntry.name;
 
     [dateFormatter release];
 
@@ -155,10 +169,25 @@
     EquipmentEntry *newEntry = (EquipmentEntry*)[NSEntityDescription insertNewObjectForEntityForName:@"EquipmentEntry" inManagedObjectContext:journalEntry.managedObjectContext];
     newEntry.index_ = [NSNumber numberWithInt:[journalEntry.entries count]];
     newEntry.equipment = journalEntry;
-    NSInteger value;
-    if ([[NSScanner scannerWithString:weightField.text] scanInt:&value] == YES)
-        newEntry.weight = [NSNumber numberWithInteger:value];
+    float fvalue;
+    if ([[NSScanner scannerWithString:weightField.text] scanFloat:&fvalue] == YES)
+    {   
+        if (weightType.selectedSegmentIndex == 0)
+        {
+            // lbs - no change
+            newEntry.weight = [NSNumber numberWithFloat:fvalue];
+        }
+        else
+        {
+            // kgs
+            float n = fvalue * 0.45359237;
+            newEntry.weight = [NSNumber numberWithFloat:n] ;
+        }
+        
+    }
     
+    NSInteger value;
+
     if ([[NSScanner scannerWithString:setsField.text] scanInt:&value] == YES)
         newEntry.sets = [NSNumber numberWithInteger:value];
     
@@ -167,6 +196,7 @@
     
     newEntry.date = [NSDate date];
     newEntry.comments = commentsField.text;
+    newEntry.weightInKg = [NSNumber numberWithBool:(weightType.selectedSegmentIndex != 0)];
     
     [self.navigationController popViewControllerAnimated:YES];
 
@@ -186,6 +216,7 @@
         self.newSetsValue = setsField.text;
         self.newWeightsValue = weightField.text;
         self.newCommentsValue = commentsField.text;
+        newWeightTypeValue = (weightType.selectedSegmentIndex != 0);
     }
     --currentIndex;
     if (currentIndex == 0) {
@@ -198,7 +229,20 @@
     EquipmentEntry *entry = [journalEntry getEntryAtIndex:currentIndex];
     repsField.text = [entry.reps stringValue];
     setsField.text = [entry.sets stringValue];
-    weightField.text = [entry.weight stringValue];
+    weightType.selectedSegmentIndex = [entry.weightInKg boolValue];
+    if (![entry.weightInKg boolValue])
+    {
+        // lbs
+        weightField.text = [[NSNumber numberWithFloat:[entry.weight floatValue]] stringValue];
+    }
+    else
+    {
+        // kgs
+        float n = [entry.weight floatValue] * 2.20462262;
+        weightField.text = [[NSNumber numberWithFloat:n] stringValue];
+    }
+
+//    weightField.text = [entry.weight stringValue];
     commentsField.text = entry.comments;
     
     
@@ -232,6 +276,7 @@
         setsField.text = newSetsValue;
         weightField.text = newWeightsValue;
         commentsField.text = newCommentsValue;
+        weightType.selectedSegmentIndex = newWeightTypeValue;
         dateItem = [[UIBarButtonItem alloc] initWithTitle:[dateFormatter stringFromDate:[NSDate date]] style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     else
@@ -241,8 +286,21 @@
         EquipmentEntry *entry = [journalEntry getEntryAtIndex:currentIndex];
         repsField.text = [entry.reps stringValue];
         setsField.text = [entry.sets stringValue];
-        weightField.text = [entry.weight stringValue];
+        if (![entry.weightInKg boolValue])
+        {
+            // lbs
+            weightField.text = [[NSNumber numberWithFloat:[entry.weight floatValue]] stringValue];
+        }
+        else
+        {
+            // kgs
+            float n = [entry.weight floatValue] * 2.20462262;
+            weightField.text = [[NSNumber numberWithFloat:n] stringValue];
+        }
+        
+        //    weightField.text = [entry.weight stringValue];
         commentsField.text = entry.comments;
+        weightType.selectedSegmentIndex = [entry.weightInKg boolValue];
         dateItem = [[UIBarButtonItem alloc] initWithTitle:[dateFormatter stringFromDate:entry.date] style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     
@@ -287,6 +345,7 @@
 
 #pragma mark textFieldDelegate
 
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     return [textField resignFirstResponder];
@@ -294,7 +353,9 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [activeField resignFirstResponder];
     activeField = textField;
+    textField.inputAccessoryView = accessoryToolbar;
     return YES;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -303,6 +364,7 @@
 }
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textField
 {
+    [activeField resignFirstResponder];
     activeField = textField;
     textField.inputAccessoryView = accessoryToolbar;
     return YES;
@@ -310,6 +372,35 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     activeField = nil;
+}
+
+-(IBAction)switchWeight:(id)sender
+{
+    // store weight in lbs
+    UISegmentedControl *c = (UISegmentedControl*)sender;
+    float currentValue = 0;
+    BOOL validValue = NO;
+    float value;
+    if ([[NSScanner scannerWithString:weightField.text] scanFloat:&value] == YES)
+    {    
+        currentValue = value;
+        validValue = YES;
+    }
+    if (validValue)
+    {
+        if (c.selectedSegmentIndex == 0)
+        {
+            // lbs
+            float n = currentValue * 2.20462262;
+            weightField.text = [[NSNumber numberWithFloat:n] stringValue];
+        }
+        else
+        {
+            // kgs
+            float n = currentValue / 2.20462262;
+            weightField.text = [[NSNumber numberWithFloat:n] stringValue];
+        }
+    }
 }
 
 @end

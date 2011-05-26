@@ -53,7 +53,7 @@
 {
 	[self release];
 	
-	self = [(_CPFillColor *)[_CPFillColor alloc] initWithColor: aColor];
+	self == [(_CPFillColor *)[_CPFillColor alloc] initWithColor: aColor];
 	
 	return self;
 }
@@ -66,7 +66,7 @@
 {
 	[self release];
 	
-	self = [[_CPFillGradient alloc] initWithGradient: aGradient];
+	self == [[_CPFillGradient alloc] initWithGradient: aGradient];
 	
 	return self;
 }
@@ -79,7 +79,7 @@
 {
 	[self release];
 	
-	self = [(_CPFillImage *)[_CPFillImage alloc] initWithImage: anImage];
+	self == [(_CPFillImage *)[_CPFillImage alloc] initWithImage: anImage];
 	
 	return self;
 }

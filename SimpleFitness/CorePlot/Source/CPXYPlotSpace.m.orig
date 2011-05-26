@@ -65,7 +65,7 @@
 
 -(id)init
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		xRange = [[CPPlotRange alloc] initWithLocation:CPDecimalFromInteger(0) length:CPDecimalFromInteger(1)];
 		yRange = [[CPPlotRange alloc] initWithLocation:CPDecimalFromInteger(0) length:CPDecimalFromInteger(1)];;
         globalXRange = nil;

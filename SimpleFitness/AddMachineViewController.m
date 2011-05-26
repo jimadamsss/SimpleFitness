@@ -21,12 +21,12 @@
 @synthesize allowRepsLabel;
 @synthesize equipmentType;
 @synthesize helpLabel;
+@synthesize accessoryToolbar;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
     }
     return self;
@@ -91,7 +91,7 @@
     }
     else
     {
-        // roads
+        // cardio
         Equipment* fitness = (Equipment*)[NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:managedObjectContext];
         fitness.name = self.equipName.text;
         fitness.Type =@"Cardio";
@@ -128,5 +128,49 @@
 {
     return [textField resignFirstResponder];
 }
+
+//-(void)keyboardDidShow:(NSNotification*)n
+//{
+//    NSDictionary* info = [n userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+//    scrollView.contentInset = contentInsets;
+//    scrollView.scrollIndicatorInsets = contentInsets;
+//    
+//    // If active text field is hidden by keyboard, scroll it so it's visible
+//    // Your application might not need or want this behavior.
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height+scrollView.frame.origin.y;
+//    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+//        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y); //-kbSize.height);
+//        [scrollView setContentOffset:scrollPoint animated:YES];
+//    }
+//}
+
+//- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+//{
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    scrollView.contentInset = contentInsets;
+//    scrollView.scrollIndicatorInsets = contentInsets;
+//}
+
+-(IBAction)doneEditing:(id)sender
+{
+    [activeField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [activeField resignFirstResponder];
+    activeField = textField;
+    textField.inputAccessoryView = accessoryToolbar;
+    return YES;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    activeField = nil;
+}
+
 
 @end

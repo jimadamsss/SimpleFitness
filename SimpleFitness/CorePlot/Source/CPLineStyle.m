@@ -64,7 +64,7 @@
 
 -(id)init
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		delegate = nil;
 		lineCap = kCGLineCapButt;
 		lineJoin = kCGLineJoinMiter;

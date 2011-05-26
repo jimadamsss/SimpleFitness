@@ -24,8 +24,9 @@
 
 
 -(NSArray*)sortedEntries;
--(NSDecimalNumber*)overallHigh;
--(NSDecimalNumber*)overallLow;
+-(NSDecimalNumber*)overallHighByName:(NSString*)name plusPercent:(float)p;
+-(NSDecimalNumber*)overallLowByName:(NSString*)name;
 -(EquipmentEntry*)getEntryAtIndex:(int)index;
+
 
 @end

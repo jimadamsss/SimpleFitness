@@ -7,7 +7,7 @@
 #import "CPExceptions.h"
 #import "CPLineStyle.h"
 #import "CPUtilities.h"
-#import "CorePlotProbes.h"
+//#import "CorePlotProbes.h"
 #import <objc/runtime.h>
 
 ///	@cond
@@ -127,7 +127,7 @@
  **/
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		paddingLeft = 0.0;
 		paddingTop = 0.0;
 		paddingRight = 0.0;
@@ -167,7 +167,7 @@
 
 -(id)initWithLayer:(id)layer
 {
-	if ( self = [super initWithLayer:layer] ) {
+	if ( self == [super initWithLayer:layer] ) {
 		CPLayer *theLayer = (CPLayer *)layer;
 		
 		paddingLeft = theLayer->paddingLeft;
@@ -599,19 +599,19 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setPosition:(CGPoint)newPosition;
-{
-	[super setPosition:newPosition];
-	if ( COREPLOT_LAYER_POSITION_CHANGE_ENABLED() ) {
-		CGRect currentFrame = self.frame;
-		if (!CGRectEqualToRect(currentFrame, CGRectIntegral(self.frame)))
-			COREPLOT_LAYER_POSITION_CHANGE((char *)class_getName([self class]),
-										   (int)ceil(currentFrame.origin.x * 1000.0), 
-										   (int)ceil(currentFrame.origin.y * 1000.0),
-										   (int)ceil(currentFrame.size.width * 1000.0),
-										   (int)ceil(currentFrame.size.height * 1000.0));
-	}
-}
+//- (void)setPosition:(CGPoint)newPosition;
+//{
+//	[super setPosition:newPosition];
+//	if ( COREPLOT_LAYER_POSITION_CHANGE_ENABLED() ) {
+//		CGRect currentFrame = self.frame;
+//		if (!CGRectEqualToRect(currentFrame, CGRectIntegral(self.frame)))
+//			COREPLOT_LAYER_POSITION_CHANGE((char *)class_getName([self class]),
+//										   (int)ceil(currentFrame.origin.x * 1000.0), 
+//										   (int)ceil(currentFrame.origin.y * 1000.0),
+//										   (int)ceil(currentFrame.size.width * 1000.0),
+//										   (int)ceil(currentFrame.size.height * 1000.0));
+//	}
+//}
 
 -(void)setOuterBorderPath:(CGPathRef)newPath
 {

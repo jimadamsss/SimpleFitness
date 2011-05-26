@@ -141,7 +141,7 @@ static NSString * const CPBarLengthsBindingContext = @"CPBarLengthsBindingContex
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
 		lineStyle = [[CPLineStyle alloc] init];
 		fill = [[CPFill fillWithColor:[CPColor blackColor]] retain];
 		barWidth = 10.0;

@@ -24,7 +24,7 @@
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
 		borderLineStyle = nil;
 		fill = nil;
 
@@ -36,7 +36,7 @@
 
 -(id)initWithLayer:(id)layer
 {
-	if ( self = [super initWithLayer:layer] ) {
+	if ( self == [super initWithLayer:layer] ) {
 		CPBorderedLayer *theLayer = (CPBorderedLayer *)layer;
 		
 		borderLineStyle = [theLayer->borderLineStyle retain];

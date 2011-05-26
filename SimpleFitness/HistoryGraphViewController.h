@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Equipment.h"
+#import "EquipmentEntry.h"
 #import "CPGraphHostingView.h"
 #import "CorePlot-CocoaTouch.h"
 

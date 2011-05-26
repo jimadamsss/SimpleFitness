@@ -31,7 +31,7 @@
 
 -(id)init 
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		delegate = nil;
 		fontName = @"Helvetica";
 		fontSize = 12.0;

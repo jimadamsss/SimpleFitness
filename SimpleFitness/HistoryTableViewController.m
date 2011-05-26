@@ -135,7 +135,7 @@
     cell.textLabel.text = ((Equipment*)[self.equipment objectAtIndex:indexPath.row]).name;
     
     cell.accessoryType = UITableViewCellAccessoryNone;
-    if ([((Equipment*)[self.equipment objectAtIndex:indexPath.row]).entries count] > 0)
+    if ([((Equipment*)[self.equipment objectAtIndex:indexPath.row]).entries count] > 1)
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -186,12 +186,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//     if ([((Equipment*)[self.equipment objectAtIndex:indexPath.row]).entries count] == 0)
-//     {
-//         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//         return;
-//     }
+     if ([((Equipment*)[self.equipment objectAtIndex:indexPath.row]).entries count] < 2)
+     {
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+         return;
+     }
     HistoryGraphViewController *vc = [[HistoryGraphViewController alloc] initWithNibName:@"HistoryGraphViewController" bundle:nil];
+    vc.currentEquipment = (Equipment*)[self.equipment objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
     

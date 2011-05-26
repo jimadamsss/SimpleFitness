@@ -53,7 +53,7 @@
  **/
 -(id)initWithCGImage:(CGImageRef)anImage
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
  		CGImageRetain(anImage);
     	image = anImage;
         tiled = NO;
@@ -76,7 +76,7 @@
     CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename([path cStringUsingEncoding:NSUTF8StringEncoding]);
     CGImageRef cgImage = CGImageCreateWithPNGDataProvider(dataProvider, NULL, YES, kCGRenderingIntentDefault);
     if ( cgImage ) {
-        self = [self initWithCGImage:cgImage];
+        self == [self initWithCGImage:cgImage];
     }
     else {
         [self release];

@@ -141,7 +141,7 @@ static NSString * const CPPlotBindingOptions = @"CPPlotBindingOptions";					///<
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
 		cachedData = [[NSMutableDictionary alloc] initWithCapacity:5];
 		cachedDataCount = 0;
 		cachePrecision = CPPlotCachePrecisionAuto;

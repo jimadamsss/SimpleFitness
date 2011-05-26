@@ -7,6 +7,7 @@
 //
 
 #import "SimpleFitnessAppDelegate.h"
+#import "Equipment.h"
 
 @implementation SimpleFitnessAppDelegate
 
@@ -19,6 +20,38 @@
 {
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
+    // is it cached? if so just return
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Equipment" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    NSExpression *lhs1 = [NSExpression expressionForKeyPath:@"Type"];
+    NSExpression *rhs1 = [NSExpression expressionForConstantValue:@"Body Weight"];
+    
+    NSPredicate *eq = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:[NSComparisonPredicate predicateWithLeftExpression:lhs1 rightExpression:rhs1 modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType options:0],nil]];
+    [request setPredicate:eq];
+    NSError* err;
+    NSArray *finalResults = [self.managedObjectContext executeFetchRequest:request error:&err];
+    
+	BOOL initialConstruction = NO;
+    if (finalResults == nil)
+    {
+        NSLog(@"Error fetching DTO results?");
+		initialConstruction = YES;
+    }
+    else if([finalResults count] == 0)
+        initialConstruction = YES;
+    
+    [request release];
+
+    if (initialConstruction) {
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+        Equipment* weight = (Equipment*)[NSEntityDescription insertNewObjectForEntityForName:@"Equipment" inManagedObjectContext:managedObjectContext];
+        weight.name = @"Body Weight";
+        weight.Type = @"Body Weight";
+        
+    }
+
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -133,8 +166,12 @@
     NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"SimpleFitness.sqlite"]];
     
     NSError *error = nil;
+    NSDictionary *optionsDictionary =
+    [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+                                forKey:NSMigratePersistentStoresAutomaticallyOption];
+    
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:optionsDictionary error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -166,7 +203,7 @@
 			}
 		}  
 	}
-    
+        
     return persistentStoreCoordinator_;
 }
 

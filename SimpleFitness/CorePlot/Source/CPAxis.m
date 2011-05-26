@@ -304,7 +304,7 @@
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
 		plotSpace = nil;
 		majorTickLocations = [[NSSet set] retain];
 		minorTickLocations = [[NSSet set] retain];
@@ -359,7 +359,7 @@
 
 -(id)initWithLayer:(id)layer
 {
-	if ( self = [super initWithLayer:layer] ) {
+	if ( self == [super initWithLayer:layer] ) {
 		CPAxis *theLayer = (CPAxis *)layer;
 		
 		plotSpace = [theLayer->plotSpace retain];
@@ -1432,9 +1432,9 @@
 		if ( convertFills ) {
 			NSMutableArray *fillArray = [newFills mutableCopy];
 			NSInteger i = -1;
-			CPFill *newFill = nil;
 			
 			for ( id obj in newFills ) {
+                CPFill *newFill = nil;
 				i++;
 				if ( obj == [NSNull null] ) {
 					continue;
@@ -1456,7 +1456,7 @@
 				}
 				
 				[fillArray replaceObjectAtIndex:i withObject:newFill];
-				[newFill release];
+//				[newFill release];
 			}
 			
 			alternatingBandFills = fillArray;

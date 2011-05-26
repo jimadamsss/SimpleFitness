@@ -44,7 +44,7 @@
  **/
 -(id)initWithDateFormatter:(NSDateFormatter *)aDateFormatter
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		dateFormatter = [aDateFormatter retain];
 		referenceDate = nil;
 	}

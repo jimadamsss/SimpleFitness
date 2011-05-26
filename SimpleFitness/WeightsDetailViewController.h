@@ -21,6 +21,9 @@
     IBOutlet UIBarButtonItem *saveButton;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIToolbar *toolbar;
+    IBOutlet UILabel *setsLabel;
+    IBOutlet UILabel *repsLabel;
+    IBOutlet UISegmentedControl *weightType;
     
     IBOutlet UIToolbar *accessoryToolbar;
 
@@ -30,6 +33,7 @@
     NSString *newSetsValue;
     NSString *newRepsValue;
     NSString *newCommentsValue;
+    BOOL newWeightTypeValue;
     
     UIView *activeField;
 }
@@ -44,6 +48,9 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIToolbar *accessoryToolbar;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UILabel *setsLabel;
+@property (nonatomic, retain) IBOutlet UILabel *repsLabel;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *weightType;
 
 @property (nonatomic, retain) Equipment *journalEntry;
 @property (nonatomic, retain) NSString *newWeightsValue;
@@ -56,5 +63,6 @@
 -(IBAction)save:(id)sender;
 
 -(IBAction)doneEditing:(id)sender;
+-(IBAction)switchWeight:(id)sender;
 
 @end

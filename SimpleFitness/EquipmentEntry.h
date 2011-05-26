@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSNumber * sets;
 @property (nonatomic, retain) NSNumber * speed;
 @property (nonatomic, retain) NSNumber * weight;
+@property (nonatomic, retain) NSNumber * weightInKg;
 @property (nonatomic, retain) NSNumber * graphValue;
 @property (nonatomic, retain) Equipment * equipment;
 

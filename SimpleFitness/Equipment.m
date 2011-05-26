@@ -8,6 +8,7 @@
 
 #import "Equipment.h"
 #import "Journal.h"
+#import "CorePlot-CocoaTouch.h"
 
 
 @implementation Equipment
@@ -78,13 +79,13 @@
     return array;
 }
 
--(NSDecimalNumber*)overallHigh
+-(NSDecimalNumber*)overallHighByName:(NSString*)name plusPercent:(float)p
 {
     NSDecimalNumber *overallHigh = [NSDecimalNumber notANumber];
     
     
     for (EquipmentEntry*ent in self.entries) {
-        NSDecimalNumber *weight = [NSDecimalNumber decimalNumberWithDecimal:[ent.graphValue decimalValue]];
+        NSDecimalNumber *weight = [NSDecimalNumber decimalNumberWithDecimal:[[ent valueForKey:name] decimalValue]];
         if ( [overallHigh isEqual:[NSDecimalNumber notANumber]] ) {
             overallHigh = weight;
         }
@@ -93,16 +94,16 @@
             overallHigh = weight;
         }
     }
-    return overallHigh;
+    return [overallHigh decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithDecimal:CPDecimalFromFloat(p+1.0)]];
 }
 
--(NSDecimalNumber*)overallLow
+-(NSDecimalNumber*)overallLowByName:(NSString*)name
 {
     NSDecimalNumber *overallLow = [NSDecimalNumber notANumber];
     
     
     for (EquipmentEntry*ent in self.entries) {
-        NSDecimalNumber *weight = [NSDecimalNumber decimalNumberWithDecimal:[ent.graphValue decimalValue]];
+        NSDecimalNumber *weight = [NSDecimalNumber decimalNumberWithDecimal:[[ent valueForKey:name] decimalValue]];
 		if ( [overallLow isEqual:[NSDecimalNumber notANumber]] ) {
             overallLow = weight;
         }

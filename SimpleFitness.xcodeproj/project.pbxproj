@@ -108,8 +108,15 @@
 		94ACD2E4135B88FF00B32E98 /* newspaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ACD2E0135B88FF00B32E98 /* newspaper@2x.png */; };
 		94ACD2E5135B88FF00B32E98 /* trend.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ACD2E1135B88FF00B32E98 /* trend.png */; };
 		94ACD2E6135B88FF00B32E98 /* trend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ACD2E2135B88FF00B32E98 /* trend@2x.png */; };
+		94D1AA1B137F2EF3009289E3 /* BodyWeightDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D1AA19137F2EF2009289E3 /* BodyWeightDetailViewController.m */; };
+		94D1AA1C137F2EF3009289E3 /* BodyWeightDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D1AA1A137F2EF3009289E3 /* BodyWeightDetailViewController.xib */; };
+		94D1AA2913802B20009289E3 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D1AA2713802B1F009289E3 /* InfoViewController.m */; };
+		94D1AA2A13802B20009289E3 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D1AA2813802B20009289E3 /* InfoViewController.xib */; };
+		94D1AA2C13806C8C009289E3 /* iTunesArtWork.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D1AA2B13806C8C009289E3 /* iTunesArtWork.png */; };
+		94D1AA3613806CF6009289E3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D1AA3513806CF6009289E3 /* Default.png */; };
 		94E4147B133E2F35009D8837 /* AddMachineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E41479133E2F35009D8837 /* AddMachineViewController.m */; };
 		94E4147C133E2F35009D8837 /* AddMachineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E4147A133E2F35009D8837 /* AddMachineViewController.xib */; };
+		94F39D321389998C005A4947 /* SimpleFitnessMappingModel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 94F39D311389998C005A4947 /* SimpleFitnessMappingModel.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -375,9 +382,19 @@
 		94ACD2E0135B88FF00B32E98 /* newspaper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newspaper@2x.png"; path = "../../SimpleFitness/SimpleFitness/newspaper@2x.png"; sourceTree = "<group>"; };
 		94ACD2E1135B88FF00B32E98 /* trend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trend.png; path = ../../SimpleFitness/SimpleFitness/trend.png; sourceTree = "<group>"; };
 		94ACD2E2135B88FF00B32E98 /* trend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "trend@2x.png"; path = "../../SimpleFitness/SimpleFitness/trend@2x.png"; sourceTree = "<group>"; };
+		94D1AA18137F2EF2009289E3 /* BodyWeightDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BodyWeightDetailViewController.h; path = ../../SimpleFitness/SimpleFitness/BodyWeightDetailViewController.h; sourceTree = "<group>"; };
+		94D1AA19137F2EF2009289E3 /* BodyWeightDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BodyWeightDetailViewController.m; path = ../../SimpleFitness/SimpleFitness/BodyWeightDetailViewController.m; sourceTree = "<group>"; };
+		94D1AA1A137F2EF3009289E3 /* BodyWeightDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BodyWeightDetailViewController.xib; path = ../../SimpleFitness/SimpleFitness/BodyWeightDetailViewController.xib; sourceTree = "<group>"; };
+		94D1AA2613802B1F009289E3 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = ../../SimpleFitness/SimpleFitness/InfoViewController.h; sourceTree = "<group>"; };
+		94D1AA2713802B1F009289E3 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewController.m; path = ../../SimpleFitness/SimpleFitness/InfoViewController.m; sourceTree = "<group>"; };
+		94D1AA2813802B20009289E3 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewController.xib; path = ../../SimpleFitness/SimpleFitness/InfoViewController.xib; sourceTree = "<group>"; };
+		94D1AA2B13806C8C009289E3 /* iTunesArtWork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtWork.png; sourceTree = "<group>"; };
+		94D1AA3513806CF6009289E3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		94E41478133E2F35009D8837 /* AddMachineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMachineViewController.h; sourceTree = "<group>"; };
 		94E41479133E2F35009D8837 /* AddMachineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMachineViewController.m; sourceTree = "<group>"; };
 		94E4147A133E2F35009D8837 /* AddMachineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMachineViewController.xib; sourceTree = "<group>"; };
+		94F39D2D1389974D005A4947 /* SimpleFitnessModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SimpleFitnessModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		94F39D311389998C005A4947 /* SimpleFitnessMappingModel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = SimpleFitnessMappingModel.xcmappingmodel; path = ../../SimpleFitness/SimpleFitness/SimpleFitnessMappingModel.xcmappingmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +641,8 @@
 		94A53EBE1323DD8500E58350 = {
 			isa = PBXGroup;
 			children = (
+				94D1AA3513806CF6009289E3 /* Default.png */,
+				94D1AA2B13806C8C009289E3 /* iTunesArtWork.png */,
 				94216BAE1375CD7A00F3C8F3 /* CorePlot */,
 				94A53ED31323DD8600E58350 /* SimpleFitness */,
 				94A53ECC1323DD8600E58350 /* Frameworks */,
@@ -674,6 +693,7 @@
 				94A53EEB1323DD8600E58350 /* SecondView.xib */,
 				94A53ED41323DD8600E58350 /* Supporting Files */,
 				94A53EF31323DDC000E58350 /* SimpleFitnessModel.xcdatamodeld */,
+				94F39D311389998C005A4947 /* SimpleFitnessMappingModel.xcmappingmodel */,
 				94216C021375F4DC00F3C8F3 /* Equipment.h */,
 				94216C031375F4DC00F3C8F3 /* Equipment.m */,
 				94216C041375F4DC00F3C8F3 /* EquipmentEntry.h */,
@@ -692,6 +712,12 @@
 				94E41478133E2F35009D8837 /* AddMachineViewController.h */,
 				94E41479133E2F35009D8837 /* AddMachineViewController.m */,
 				94E4147A133E2F35009D8837 /* AddMachineViewController.xib */,
+				94D1AA18137F2EF2009289E3 /* BodyWeightDetailViewController.h */,
+				94D1AA19137F2EF2009289E3 /* BodyWeightDetailViewController.m */,
+				94D1AA1A137F2EF3009289E3 /* BodyWeightDetailViewController.xib */,
+				94D1AA2613802B1F009289E3 /* InfoViewController.h */,
+				94D1AA2713802B1F009289E3 /* InfoViewController.m */,
+				94D1AA2813802B20009289E3 /* InfoViewController.xib */,
 			);
 			path = SimpleFitness;
 			sourceTree = "<group>";
@@ -772,6 +798,10 @@
 				94ACD2E6135B88FF00B32E98 /* trend@2x.png in Resources */,
 				94216BD61375D31900F3C8F3 /* HistoryGraphViewController.xib in Resources */,
 				94216BD81375D31900F3C8F3 /* HistoryTableViewController.xib in Resources */,
+				94D1AA1C137F2EF3009289E3 /* BodyWeightDetailViewController.xib in Resources */,
+				94D1AA2A13802B20009289E3 /* InfoViewController.xib in Resources */,
+				94D1AA2C13806C8C009289E3 /* iTunesArtWork.png in Resources */,
+				94D1AA3613806CF6009289E3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +895,9 @@
 				94216C081375F4DC00F3C8F3 /* Equipment.m in Sources */,
 				94216C091375F4DC00F3C8F3 /* EquipmentEntry.m in Sources */,
 				94216C0A1375F4DC00F3C8F3 /* Journal.m in Sources */,
+				94D1AA1B137F2EF3009289E3 /* BodyWeightDetailViewController.m in Sources */,
+				94D1AA2913802B20009289E3 /* InfoViewController.m in Sources */,
+				94F39D321389998C005A4947 /* SimpleFitnessMappingModel.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1043,7 @@
 		94A53EF31323DDC000E58350 /* SimpleFitnessModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				94F39D2D1389974D005A4947 /* SimpleFitnessModel 2.xcdatamodel */,
 				94A53EF41323DDC000E58350 /* SimpleFitnessModel.xcdatamodel */,
 			);
 			currentVersion = 94A53EF41323DDC000E58350 /* SimpleFitnessModel.xcdatamodel */;

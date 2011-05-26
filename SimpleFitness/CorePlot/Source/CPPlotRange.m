@@ -78,7 +78,7 @@
  **/
 -(id)initWithLocation:(NSDecimal)loc length:(NSDecimal)len
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
     	self.location = loc;
         self.length = len;
 	}
@@ -194,7 +194,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder 
 {
-    if ( self = [super init] ) {
+    if ( self == [super init] ) {
         self.location = [[decoder decodeObject] decimalValue];
         self.length = [[decoder decodeObject] decimalValue];
     }

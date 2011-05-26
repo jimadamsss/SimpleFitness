@@ -138,7 +138,7 @@ NSString * const CPBarPlotBindingBarLengths = @"barLengths";		///< Bar lengths.
 
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super initWithFrame:newFrame] ) {
+	if ( self == [super initWithFrame:newFrame] ) {
 		lineStyle = [[CPLineStyle alloc] init];
 		lineStyle.delegate = self;
 		fill = [[CPFill fillWithColor:[CPColor blackColor]] retain];
@@ -157,7 +157,7 @@ NSString * const CPBarPlotBindingBarLengths = @"barLengths";		///< Bar lengths.
 
 -(id)initWithLayer:(id)layer
 {
-	if ( self = [super initWithLayer:layer] ) {
+	if ( self == [super initWithLayer:layer] ) {
 		CPBarPlot *theLayer = (CPBarPlot *)layer;
 		
 		lineStyle = [theLayer->lineStyle retain];

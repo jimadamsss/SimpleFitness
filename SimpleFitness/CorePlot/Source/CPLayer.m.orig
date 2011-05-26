@@ -121,7 +121,7 @@
  **/
 -(id)initWithFrame:(CGRect)newFrame
 {
-	if ( self = [super init] ) {
+	if ( self == [super init] ) {
 		paddingLeft = 0.0;
 		paddingTop = 0.0;
 		paddingRight = 0.0;

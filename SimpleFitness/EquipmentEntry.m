@@ -20,6 +20,7 @@
 @dynamic sets;
 @dynamic speed;
 @dynamic weight;
+@dynamic weightInKg;
 @dynamic graphValue;
 @dynamic equipment;
 

@@ -333,9 +333,7 @@
 
 -(id)initWithCoder:(NSCoder *)coder
 {
-	self = [super init];
-    
-    if (self) {
+    if (self == [super init]) {
 		CGFloat colorComponents[4];
 		colorComponents[0] = [coder decodeDoubleForKey:@"redComponent"];
 		colorComponents[1] = [coder decodeDoubleForKey:@"greenComponent"];

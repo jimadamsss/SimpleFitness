@@ -11,6 +11,7 @@
 #import "FitnessDetailViewController.h"
 #import "WeightsDetailViewController.h"
 #import "AddMachineViewController.h"
+#import "InfoViewController.h"
 
 
 @implementation JournalViewController
@@ -18,6 +19,7 @@
 @synthesize addMachineController;
 @synthesize weightsDetailController;
 @synthesize cardioDetailController;
+@synthesize bodyWeightDetailController;
 
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
 @synthesize fetchRequest;
@@ -40,6 +42,7 @@
     [addMachineController release];
     [weightsDetailController release];
     [cardioDetailController release];
+    [bodyWeightDetailController release];
     [super dealloc];
 }
 
@@ -87,6 +90,14 @@
 {
     self.navigationItem.backBarButtonItem.title = @"Cancel";
     [self.navigationController pushViewController:self.addMachineController animated:YES];
+}
+
+-(IBAction)info:(id)sender;
+{
+    // put up help screen.
+    self.navigationItem.backBarButtonItem.title = @"Journal";
+    InfoViewController *vc = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -187,6 +198,7 @@
 
 - (void)tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here -- for example, create and push another view controller.
+    self.navigationItem.backBarButtonItem.title = @"Journal";
 	Equipment *journal = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     if ([[journal valueForKey:@"Type"] isEqualToString:@"Cardio"])
     {
@@ -198,6 +210,11 @@
         weightsDetailController.journalEntry = journal;
         [self.navigationController pushViewController:weightsDetailController animated:YES];
     }
+    else if ([[journal valueForKey:@"Type"] isEqualToString:@"Body Weight"])
+    {
+        bodyWeightDetailController.journalEntry = journal;
+        [self.navigationController pushViewController:bodyWeightDetailController animated:YES];
+    }
 	[table deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -208,13 +225,17 @@
     header.backgroundColor = [UIColor clearColor];
     header.textAlignment = UITextAlignmentCenter;
     header.font = [UIFont boldSystemFontOfSize:17];
-    if (section == 0)
-        header.text = @"Cardio";
-    else
-        header.text = @"Weights";
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    header.text = ((Equipment*)[sectionInfo.objects objectAtIndex:0]).Type;
     return header;
 }
 
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section { 
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+////    return [sectionInfo name];
+//    return ((Equipment*)[sectionInfo.objects objectAtIndex:0]).Type;
+//}
 
 #pragma mark -
 #pragma mark Fetched results controller
@@ -238,8 +259,9 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"Type" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -251,7 +273,8 @@
     
     [aFetchedResultsController release];
     //    [fetchRequest release];
-    [sortDescriptor release];
+    [sortDescriptor1 release];
+    [sortDescriptor2 release];
     [sortDescriptors release];
     
     NSError *error = nil;
