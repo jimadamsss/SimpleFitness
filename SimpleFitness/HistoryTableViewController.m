@@ -40,10 +40,8 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+-(void)refetchEquipment
 {
-    [super viewDidLoad];
-    
     
     self.equipment = nil;
     
@@ -65,6 +63,14 @@
     
     [request release];
     self.equipment = finalResults;
+    [self.tableView reloadData];
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
 //    self.tableView.dataSource = finalResults;
 
 
@@ -85,6 +91,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self refetchEquipment];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -139,6 +146,8 @@
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+//    NSLog(@"Eq: %@", [self.equipment objectAtIndex:indexPath.row]);
     
     return cell;
 }
